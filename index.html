@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chat with an AI friend!</h1>
+    <form id="chat-form">
+        <label for="message-box">Write a message to your AI assistant!</label>
+        <textarea name="message-box" id="message-box" style="white-space: pre-wrap;"></textarea>
+        <button type="submit">Send!</button>
+    </form>
+    <p id="response-text" style="overflow-wrap:break-word"></p>
+    
+    <script>
+        const form = document.getElementById("chat-form")
+        const responseEl = document.getElementById("response-text")
+
+        form.addEventListener("submit", async function(e){
+            e.preventDefault()
+            try {
+                const msg = document.getElementById("message-box").value
+                const req = await fetch("/chat", {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ message: msg })
+                })
+                const data = await req.json()
+                if(data.error){
+                    responseEl.textContent = "Error: " + data.error
+                }
+                else{
+                    responseEl.textContent = data.reply
+                }
+                
+            } catch (error) {
+                responseEl.textContent = "Fetch error: " + error.message
+            }
+        })
+    </script>
+</body>
+</html>

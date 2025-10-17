@@ -1,5 +1,5 @@
 # CS-Club-2025-10-16
-Project built during 2025-10-16 meeting  
+AI assistant project built during 2025-10-16 meeting  
   
 To run it, you'll need to add your API key to the .env file.  
 You may also need to install a few node modules.  

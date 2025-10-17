@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "npm install --silent; nodemon index.js"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
